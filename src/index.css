@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f7fa;
+  color: #333;
+  padding: 30px;
+}
+
+code {
+  font-family: 'Fira Mono', Consolas, Monaco, 'Courier New', monospace;
+  background: #eaeaea;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.95em;
+}
+
+h2 {
+  margin-top: 50px;
+  color: #2c3e50;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 0.95em;
+  background: #fff;
+  transition: background-color 0.3s ease;
+}
+
+th {
+  background-color: #2980b9;
+  color: white;
+  font-weight: 600;
+}
+
+td:hover {
+  background-color: #ecf0f1;
+  cursor: default;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 55px);
+  grid-template-rows: repeat(8, 55px);
+  width: 440px;
+  border: 3px solid #34495e;
+  margin: 30px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  user-select: none;
+}
+
+.white {
+  background-color: #f9f5e7;
+  transition: background-color 0.3s ease;
+}
+
+.black {
+  background-color: #6b5b40;
+  transition: background-color 0.3s ease;
+}
+
+.white:hover {
+  background-color: #fff8dc;
+}
+
+.black:hover {
+  background-color: #7c6a4f;
+}
+.notation {
+  display: flex;
+  justify-content: space-between;
+  width: 440px;
+  margin: 15px auto 0;
+  font-weight: 700;
+  color: #34495e;
+  letter-spacing: 0.1em;
+  font-size: 1.1em;
+}
