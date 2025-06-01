@@ -1,0 +1,96 @@
+.app {
+  max-width: 800px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+  color: #222;
+  padding: 0 15px;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.email-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto 40px;
+}
+
+.email-form label {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.email-form input {
+  padding: 8px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.email-form button {
+  padding: 10px;
+  font-weight: 600;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.email-form button:hover {
+  background-color: #0056b3;
+}
+
+.message {
+  font-weight: 600;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.message.error {
+  color: #c62828;
+}
+
+.message.success {
+  color: #2e7d32;
+}
+
+.product-catalog table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.product-catalog th, .product-catalog td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  text-align: center;
+  user-select: none;
+}
+
+.product-catalog th {
+  background-color: #f4f4f4;
+}
+
+.product-catalog th:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.low-stock {
+  background-color: #fff9c4; /* желтый */
+}
+
+.out-of-stock {
+  background-color: #ffcdd2; /* красный */
+}
+
+.totals {
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: right;
+}
