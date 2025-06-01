@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Селекторы</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        #moto_models, #forfooter {
+            margin: 20px 0;
+        }
+        #forfooter {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        #forfooter img {
+            max-width: 150px; 
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+        }
+    </style>
+</head>
+<body>
+
+<div id="moto_models">
+    <ul>
+        <li>Первый мотоцикл</li>
+        <li>Второй мотоцикл</li>
+        <li>Третий автомобиль</li>
+    </ul>
+</div>
+
+<div id="forfooter">
+    <img title="Мотоцикл 1" src="moto.png" alt="Мотоцикл 1">
+    <img title="Мотоцикл 2" src="moto2.png" alt="Мотоцикл 2">
+    <img title="Автомобиль" src="auto.png" alt="Автомобиль">
+</div>
+
+<table id="moto_table">
+    <thead>
+        <tr>
+            <th>Модель</th>
+            <th>Тип</th>
+            <th>Год выпуска</th>
+            <th>Цена</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Yamaha YZF-R1</td>
+            <td>Мотоцикл</td>
+            <td>2020</td>
+            <td>$20,000</td>
+        </tr>
+        <tr>
+            <td>Honda CBR1000RR</td>
+            <td>Мотоцикл</td>
+            <td>2021</td>
+            <td>$22,000</td>
+        </tr>
+        <tr>
+            <td>BMW S1000RR</td>
+            <td>Мотоцикл</td>
+            <td>2022</td>
+            <td>$25,000</td>
+        </tr>
+        <tr>
+            <td>Harley-Davidson Iron 883</td>
+            <td>Мотоцикл</td>
+            <td>2019</td>
+            <td>$10,000</td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="results"></div>
+
+<script>
+    // 1. отобрать элементы li, содержащие текст "мотоцикл"
+    const motoLi = $('#moto_models li:contains("мотоцикл")');
+    $('#results').append('<div class="result">Элементы списка с "мотоцикл": ' + motoLi.map(function() { return $(this).text(); }).get().join(', ') + '</div>');
+    console.log(motoLi);
+
+    // 2. отобрать картинки с title "Мотоцикл 1"
+    const producerImages = $('#forfooter img[title="Мотоцикл 1"]');
+    $('#results').append('<div class="result">Изображение с title "Мотоцикл 1": ' + producerImages.attr('src') + '</div>');
+    console.log(producerImages);
+
+    // 3. отобрать последние ячейки в четных строках таблицы
+    const evenRowLastCells = $('#moto_table tr:even td:last-child');
+    $('#results').append('<div class="result">Цены в четных строках: ' + evenRowLastCells.map(function() { return $(this).text(); }).get().join(', ') + '</div>');
+    console.log(evenRowLastCells);
+</script>
+
+</body>
+</html>
