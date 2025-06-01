@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Шахматная доска</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #fce4ec;
+            color: #880e4f; 
+        }
+        h1 {
+            color: #b71c1c;
+        }
+        pre {
+            font-size: 24px;
+            line-height: 1.5;
+            color: #4a148c; 
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #4a148c; 
+            display: inline-block;
+            white-space: pre;
+            border-radius: 10px; 
+        }
+    </style>
+    <script>
+        function createChessBoard(size) {
+            let board = ''; 
+            for (let row = 0; row < size; row++) {
+                for (let col = 0; col < size; col++) {
+                    if ((row + col) % 2 === 0) {
+                         board += '#'; 
+                    } else {
+                        board += ' '; 
+            }
+        }
+        board += '\n'; 
+    }
+    return board; 
+}
+        function displayChessBoard() {
+            const size = parseInt(prompt("Введите размер доски:",), 10);
+            if (size > 0) {
+                const board = createChessBoard(size);
+                document.getElementById('board').textContent = board;
+            } else {
+                alert("Пожалуйста, введите корректный размер.");
+            }
+        }
+
+        window.onload = displayChessBoard;
+    </script>
+</head>
+<body>
+    <h1>Шахматная доска</h1>
+    <pre id="board"></pre>
+</body>
+</html>

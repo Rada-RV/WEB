@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Пример</title>
+    <script>
+        function showConfirmDialog() {
+            if (confirm("Вы хотите продолжить?")) {
+                alert("Вы нажали 'Ок'");
+            } else {
+                alert("Вы нажали 'Отмена'");
+            }
+        }
+        window.onload = showConfirmDialog;
+    </script>
+</head>
+<body>
+    <h1>Пример с confirm</h1>
+</body>
+</html>
