@@ -1,0 +1,64 @@
+
+  body {
+    margin: 0; 
+    background: #f7f9fc;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  .app-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px 50px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 18px rgba(0,0,0,0.1);
+  }
+  .section {
+    margin-bottom: 50px;
+  }
+  h1 {
+    margin-bottom: 15px;
+    font-weight: 700;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 8px;
+  }
+  .clock-display {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: #222;
+    color: #0f0;
+    padding: 15px 20px;
+    display: inline-block;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+  .job-selector {
+    margin-bottom: 20px;
+  }
+  .radio-label {
+    margin-right: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+  }
+  .radio-label input {
+    margin-right: 6px;
+    cursor: pointer;
+  }
+  .job-menu ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .job-menu li {
+    margin-bottom: 10px;
+  }
+  .job-menu a {
+    text-decoration: none;
+    color: #007acc;
+    font-weight: 600;
+  }
+  .job-menu a:hover,
+  .job-menu a:focus {
+    text-decoration: underline;
+  }
