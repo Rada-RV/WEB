@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Получение данных</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(to right, #ece9e6, #ffffff);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        button {
+            padding: 15px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        function getUserDetails() {
+            const surname = prompt("Введите свою фамилию:");
+            const gender = prompt("Введите свой пол:");
+            const age = prompt("Введите свой возраст:");
+
+            const confirmation = confirm(`ФИО: ${surname}\nПол: ${gender}\nВозраст: ${age}\nВсе верно?`);
+
+            if (confirmation) {
+                alert(`Привет, ${surname}!`);
+                window.location.href = "LABR2_2.html";
+            } else {
+                alert("Ошибка в данных. Попробуйте снова.");
+                getUserDetails(); 
+            }
+        }
+        window.onload = getUserDetails;
+    </script>
+</head>
+<body>
+    <h1>Добро пожаловать!</h1>
+    <button onclick="getUserDetails()">Начать</button>
+</body>
+</html>
