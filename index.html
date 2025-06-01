@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пример jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #757575;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        #logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        img {
+            margin: 10px;
+            width: 150px;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        img:hover {
+            transform: scale(1.1);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #616161;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #424242;
+            transform: scale(1.05);
+        }
+
+        #message {
+            margin-top: 20px;
+            color: #333;
+            background-color: #bdbdbd;
+            padding: 10px;
+            border: 1px solid #9e9e9e;
+            border-radius: 5px;
+        }
+
+        p {
+            background-color: #424242;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <img src="logo.jpg" alt="Логотип" id="logo">
+        <h1 id="main_h1">Заголовок сайта</h1>
+    </div>
+    
+    <div class="image-container">
+        <img src="moto1.jpg" alt="Мотоцикл 1">
+        <img src="moto2.jpg" alt="Мотоцикл 2" id="moto2">
+        <img src="moto3.jpg" alt="Мотоцикл 3">
+    </div>
+    
+    <div class="button-container">
+        <button id="hideLogoButton">Скрыть логотип</button>
+        <button id="hideOtherImagesButton">Скрыть остальные изображения</button>
+        <button id="animateMotoButton">Анимировать moto2.jpg</button>
+        <button id="addParagraphButton">Добавить параграф</button>
+        <button id="resetButton">Вернуть все в исходное состояние</button>
+        <button id="changeTitleButton">Изменить заголовок</button>
+    </div>
+
+    <div id="message"></div>
+
+    <script>
+        $(document).ready(function () {
+            $('#main_h1').text('текст измененный с помощью jQuery');//меняем текст заголовка при загрузки страницы
+
+            var myLogo = $('img[src*="logo.jpg"]');//выбор логотипа  который содержит logo.jpg
+            var otherImages = $('img:not(:first)');//все кроме первого
+            var moto2 = $('#moto2');//2 м (id)
+
+            $('#hideLogoButton').click(function () {
+                myLogo.hide(3000, function () {
+                    $('#message').text('Логотип скрыт.');//после зав. анимации обновляет текст в сообщении
+                });
+            });
+
+            $('#hideOtherImagesButton').click(function () {
+                otherImages.hide(5000, function () {
+                    $('#message').text('Остальные изображения скрыты.');
+                });
+            });
+
+            function changeAttribute(id, attr, value) {
+                $('#' + id).attr(attr, value);
+            }
+            changeAttribute('main_h1', 'title', 'Новый заголовок');
+
+            $('#animateMotoButton').click(function () {
+                moto2.css('border', '1px solid #333333')
+                    .animate({ borderWidth: '5px' }, 5000)
+                    .fadeOut(5000, function () {
+                        $('#header').fadeOut(5000, function () {
+                        $('#message').text('Анимация завершена и новый абзац добавлен.');
+                        });
+                    });
+            });
+            $('#changeTitleButton').click(function () {
+                 changeAttribute('main_h1', 'title', 'Новый заголовок'); 
+                $('#main_h1').text('Новый заголовок'); 
+            });
+
+            $('#addParagraphButton').click(function () {
+                $('<p id="newparagraph">Это новый абзац</p>').appendTo('body')
+                    .css({
+                        'background-color': 'black',
+                        'color': 'white',
+                        'padding': '10px',
+                        'border-radius': '5px'
+                    });
+                $('#message').text('Новый абзац добавлен.');
+            });
+
+            $('#resetButton').click(function () {
+                myLogo.show();
+                otherImages.show();
+                moto2.css('border', ''); // убираем рамку
+                moto2.show(); // показываем мотоцикл
+                $('#newparagraph').remove(); // удаляем новый абзац
+                $('#main_h1').text('Заголовок сайта'); //возвращаем оригинальный заголовок
+                $('#header').show(); // показываем шапку
+                $('#message').text('Все элементы возвращены в исходное состояние.');
+            });
+        });
+    </script>
+</body>
+
+</html>
