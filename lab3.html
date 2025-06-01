@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Бланк заказов</title>
+    <link rel="stylesheet" href="st.css">
+</head>
+<body>
+    <h1>Заказ товаров</h1>
+        <div class="product">
+            <label>Товар 1: <span class="price">20</span>₽</label>
+            <select class="quantity">
+                <option value="1">1 шт.</option>
+                <option value="5">5 шт.</option>
+                <option value="10">10 шт.</option>
+            </select>
+            <label>Упаковка?</label>
+            <input type="radio" name="pack1" value="yes" checked> Да
+            <input type="radio" name="pack1" value="no"> Нет
+        </div>
+        <div class="product">
+            <label>Товар 2: <span class="price">30</span>₽</label>
+            <select class="quantity">
+                <option value="1">1 шт.</option>
+                <option value="5">5 шт.</option>
+                <option value="10">10 шт.</option>
+            </select>
+            <label>Упаковка?</label>
+            <input type="radio" name="pack2" value="yes" checked> Да
+            <input type="radio" name="pack2" value="no"> Нет
+        </div>
+        <div class="product">
+            <label>Товар 3: <span class="price">15</span>₽</label>
+            <select class="quantity">
+                <option value="1">1 шт.</option>
+                <option value="5">5 шт.</option>
+                <option value="10">10 шт.</option>
+            </select>
+            <label>Упаковка?</label>
+            <input type="radio" name="pack3" value="yes" checked> Да
+            <input type="radio" name="pack3" value="no"> Нет
+        </div>
+        <div class="product">
+            <label>Товар 4: <span class="price">25</span>₽</label>
+            <select class="quantity">
+                <option value="1">1 шт.</option>
+                <option value="5">5 шт.</option>
+                <option value="10">10 шт.</option>
+            </select>
+            <label>Упаковка?</label>
+            <input type="radio" name="pack4" value="yes" checked> Да
+            <input type="radio" name="pack4" value="no"> Нет
+        </div>
+        <div class="product">
+            <label>Товар 5: <span class="price">40</span>₽</label>
+            <select class="quantity">
+                <option value="1">1 шт.</option>
+                <option value="5">5 шт.</option>
+                <option value="10">10 шт.</option>
+            </select>
+            <label>Упаковка?</label>
+            <input type="radio" name="pack5" value="yes" checked> Да
+            <input type="radio" name="pack5" value="no"> Нет
+        </div>
+        <label>Необходима доставка?</label>
+        <input type="checkbox" id="delivery" value="yes"> Да
+        <br>
+        <button type="button" id="calculate">Рассчитать</button>
+    <div id="result"></div>
+    <script src="script.js"></script>
+</body>
+</html>
