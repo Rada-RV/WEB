@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Расчет рабочих дней и стажа сотрудников</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        canvas {
+            max-width: 600px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Расчет рабочих и выходных дней</h1>
+    <form id="dateForm">
+        <label for="startDate">Дата начала:</label>
+        <input type="date" id="startDate" required>
+        <label for="endDate">Дата окончания:</label>
+        <input type="date" id="endDate" required>
+        <button type="submit">Рассчитать</button>
+    </form>
+
+    <h2>Стаж сотрудников</h2>
+    <form id="employeeForm">
+        <div>
+            <label>Фамилия:</label>
+            <input type="text" id="surname" required>
+            <label>Дата приема на работу:</label>
+            <input type="date" id="hireDate" required>
+            <button type="button" onclick="addEmployee()">Добавить сотрудника</button>
+        </div>
+    </form>
+
+    <canvas id="employeeChart"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // pfагрузка данных из localStorage
+        const employees = JSON.parse(localStorage.getItem('employees')) || [];
+        const categoriesCount = JSON.parse(localStorage.getItem('categoriesCount')) || { junior: 0, mid: 0, senior: 0 };
+        let employeeChart;
+
+        // заpагружаем данные сотрудников и категории из localStorage
+        employees.forEach(employee => {
+            const yearsWorked = new Date().getFullYear() - new Date(employee.hireDate).getFullYear();
+            if (yearsWorked < 1) {
+                categoriesCount.junior++;
+            } else if (yearsWorked <= 5) {
+                categoriesCount.mid++;
+            } else {
+                categoriesCount.senior++;
+            }
+        });
+
+        document.getElementById('dateForm').addEventListener('submit', function(event) {
+            const start = new Date(document.getElementById('startDate').value);
+            const end = new Date(document.getElementById('endDate').value);
+            const workDays = calculateWorkDays(start, end);
+            alert(`Рабочие дни: ${workDays.workDays}, Выходные дни: ${workDays.weekendDays}`);
+        });
+
+        function calculateWorkDays(start, end) {
+            let workDays = 0;
+            let weekendDays = 0;
+            for (let d = start; d <= end; d.setDate(d.getDate() + 1)) {
+                const day = d.getDay(); // от 0(вс) до 6 (сб)
+                if (day === 0 || day === 6) {
+                    weekendDays++;
+                } else {
+                    workDays++;
+                }
+            }
+            return { workDays, weekendDays };
+        }
+
+        function addEmployee() {
+            const surname = document.getElementById('surname').value;
+            const hireDate = new Date(document.getElementById('hireDate').value);
+            const currentYear = new Date().getFullYear();
+            const yearsWorked = currentYear - hireDate.getFullYear();
+
+            if (yearsWorked < 1) {
+                categoriesCount.junior++;
+            } else if (yearsWorked <= 5) {
+                categoriesCount.mid++;
+            } else {
+                categoriesCount.senior++;
+            }
+            employees.push({ surname, hireDate });
+            
+            // cохр данных в localStorage
+            localStorage.setItem('employees', JSON.stringify(employees)); 
+            localStorage.setItem('categoriesCount', JSON.stringify(categoriesCount)); 
+
+            updateChart();
+            document.getElementById('employeeForm').reset();
+        }
+
+        function updateChart() {
+            const ctx = document.getElementById('employeeChart').getContext('2d'); // контекст рис. элем. канвас с 2д
+            const chartData = {
+                labels: Object.keys(categoriesCount),
+                datasets: [{
+                    label: 'Количество сотрудников', // назв. набора данных
+                    data: Object.values(categoriesCount), // массив знач.
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                }]
+            };
+
+            if (employeeChart) { // проверка сущ. ли график 
+                employeeChart.data = chartData; 
+                employeeChart.update(); 
+            } else {
+                employeeChart = new Chart(ctx, {
+                    type: 'bar', // столбчатый график 
+                    data: chartData, // передает данные для графика
+                    options: {
+                        responsive: true, // адапт. к размерам контейнера
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+        }
+        updateChart(); // Инициализация графика
+    </script>
+</body>
+</html>
